@@ -8,8 +8,10 @@ def check(checker):
         return 1
     return 0
 
+system=platform.uname()
 if("Linux" in platform.platform()):
     print(distro.name())
+    print(f"Architecture:{system.machine}")
     os.system("sudo apt update -y")
     os.system("sudo apt upgrade -y")
     a=input("Enter C to clear:")
@@ -32,7 +34,7 @@ if("Linux" in platform.platform()):
     if(check(node)):
         print("Installing Node Version Manager")
         time.sleep(2)
-        os.system("curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash")
+        os.system("curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | sudo -E bash")
         os.system("source ~/.nvm/nvm.sh")
         print("Do you want to download node")
         ch=input("Enter Yes/No[Y/n]?:")
@@ -50,6 +52,8 @@ if("Linux" in platform.platform()):
 
 
 elif("Windows" in platform.platform()):
+    print(f"Architecture:{system.machine}")
+    os.system("start chrome https://bleyer.org/icarus/iverilog-10.0-x86_setup.exe")
     print("Would you like to download NodeJS?")
     node=input("Enter Yes/No[Y/n]?:")
     if(check(node)):
@@ -78,4 +82,5 @@ elif("Windows" in platform.platform()):
         if(check(createapp)):
             appname=input("Enter the name of the project:")
             os.system("npx create-react-app %s" % appname)
+    
             
