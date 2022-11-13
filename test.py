@@ -1,6 +1,7 @@
 import os
 import platform
 import distro
+import time
 
 def check(checker):
     if("Y" in checker or "y" in checker):
@@ -8,7 +9,7 @@ def check(checker):
     return 0
 
 if("Linux" in platform.platform()):
-    print(distro.linux_distribution())
+    print(distro.name())
     os.system("sudo apt update -y")
     os.system("sudo apt upgrade -y")
     a=input("Enter C to clear:")
@@ -24,6 +25,29 @@ if("Linux" in platform.platform()):
     sds=input("Enter Yes/No:")
     if(check(sds)):
         os.system("pip3 install -r sds.txt")
+
+    # Web Tech
+    print("Now we will be downloading node:")
+    node=input("Enter Yes/No[Y/n]?:")
+    if(check(node)):
+        print("Installing Node Version Manager")
+        time.sleep(2)
+        os.system("curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | bash")
+        os.system("source ~/.nvm/nvm.sh")
+        print("Do you want to download node")
+        ch=input("Enter Yes/No[Y/n]?:")
+        if(check(ch)):
+            # os.system("nvm install v18.12.1")
+            os.system("sudo apt-get install nodejs")
+        # else:
+        #     os.system("nvm ls-remote")
+        #     version=input("Enter the version(v18.12.1) or something like that:")
+        #     os.system("nvm install v%s" % version)
+        print("\n\nWanna download create-react-app(a tool that allows you to automatically build a basic react-app fro you)?:")
+        react=input("Enter Yes/No[Y/n]?:")
+        if(check(react)):
+            os.system("npm install create-react-app")
+
 
 elif("Windows" in platform.platform()):
     print("Would you like to download NodeJS?")
