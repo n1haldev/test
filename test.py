@@ -82,7 +82,7 @@ elif("Windows" in platform.platform()):
     print("We will download iverilog and gtkwave")
     ddco=input("Enter Yes/No[Y/n]?")
     if(check(ddco)):
-        os.system("start chrome https://bleyer.org/icarus/iverilog-10.0-x86_setup.exe")
+        os.system("start chrome https://bleyer.org/icarus/iverilog-0.9.7_setup.exe"|"start brave https://bleyer.org/icarus/iverilog-0.9.7_setup.exe"|"start firefox https://bleyer.org/icarus/iverilog-0.9.7_setup.exe")
     os.system("cls")
 
     # Statistics for Data Science
