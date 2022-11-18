@@ -50,7 +50,8 @@ if("Linux" in platform.platform()):
     afll=input("Enter Yes/No[Y/n]?:")
     if(check(afll)):
         os.system("java --version")
-        os.system("firefox https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar"|"chrome https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar"|"brave-browser https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
+        os.system("firefox https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
+    os.system("clear")
 
     # Web Tech
     print("Now we will be downloading node:")
@@ -65,7 +66,7 @@ if("Linux" in platform.platform()):
         if(check(ch)):
             os.system("nvm install v18.12.1")
             os.system("sudo apt-get install nodejs")
-        # else:
+        else:
             os.system("nvm ls-remote")
             version=input("Enter the version(v18.12.1) or something like that:")
             os.system("nvm install v%s" % version)
@@ -73,6 +74,7 @@ if("Linux" in platform.platform()):
         react=input("Enter Yes/No[Y/n]?:")
         if(check(react)):
             os.system("npm install create-react-app")
+        os.system("clear")
 
 
 elif("Windows" in platform.platform()):
@@ -103,7 +105,7 @@ elif("Windows" in platform.platform()):
     afll=input("Enter Yes/No[Y/n]?:")
     if(check(afll)):
         os.system("java --version")
-        os.system("start chrome https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar"|"start firefox https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar"|"start brave https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
+        os.system("start chrome https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
         os.system("cls")
 
     # Web Tech
