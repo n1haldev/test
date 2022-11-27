@@ -8,28 +8,31 @@ def check(checker):
         return 1
     return 0
 
+def find_pacman(dis):
+    if("Ubuntu" in dis or "Debian" in dis):
+        return "apt"
+    elif("Fedora" in dis or "CentOS" in dis or "RedHat" in dis):
+        return "dnf"
+
 system=platform.uname()
 if("Linux" in platform.platform()):
-    print(distro.name())
+    dis=distro.name()
+    pacman=find_pacman(dis)
     print(f"Architecture:{system.machine}")
-    os.system("sudo apt update -y")
-    os.system("sudo apt upgrade -y")
-    a=input("Enter C to clear:")
-    if(a=="C" or a=='c'):
-        os.system("clear")
-    else:
-        print("You like it dirty huh?")
+    os.system("sudo %s update -y" % pacman)
+    os.system("sudo %s upgrade -y" % pacman)
+    os.system("clear")
 
     # Digital Design and Computer Organisation
     print("\n\nWe will start installing required software for DDCO\n\n")
     print("DDCO-wanna download iverilog?")
     vl=input("Enter Yes/No:")
     if(check(vl)):
-        os.system("sudo apt install iverilog")
+        os.system("sudo %s install iverilog" % pacman)
         print("You will likely need gtkwave too")
         gtkwave=input("Enter Yes/no[Y/n]?:")
         if(check(gtkwave)):
-            os.system("sudo apt install gtkwave")
+            os.system("sudo %s install gtkwave" % pacman)
     os.system("clear")
 
     # Statistics for Data Science
@@ -49,27 +52,40 @@ if("Linux" in platform.platform()):
     print("Let us download all required software for AFLL")
     afll=input("Enter Yes/No[Y/n]?:")
     if(check(afll)):
-        os.system("java --version")
-        os.system("firefox https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
+        os.system("cd")
+        os.system("cd /usr/java")
+        os.system("wget https://javadl.oracle.com/webapps/download/AutoDL?BundleId=247125_10e8cce67c7843478f41411b7003171c")
+        os.system("tar xvf jre-8u351-linux-i586.tar.gz")
+        os.system("cd ../..")
+        os.system("wget https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
     os.system("clear")
 
     # Web Tech
+    print("Now we will be downloading MongoDB:")
+    mongo=input("Enter Yes/No[Y/n]?:")
+    if(check(mongo)):
+        os.system("wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -")
+        os.system('echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntubionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list')
+        os.system("sudo at update")
+        os.system("sudo apt-get install mongodb-org -y")
+        os.system("sudo systemctl enable mongod.service")
+        os.system("sudo systemctl start mongod.service")
+
     print("Now we will be downloading node:")
     node=input("Enter Yes/No[Y/n]?:")
     if(check(node)):
-        print("Installing Node Version Manager")
-        time.sleep(2)
-        os.system("curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.26.1/install.sh | sudo -E bash")
-        os.system("source ~/.nvm/nvm.sh")
         print("Do you want to download node")
         ch=input("Enter Yes/No[Y/n]?:")
         if(check(ch)):
-            os.system("nvm install v18.12.1")
-            os.system("sudo apt-get install nodejs")
-        else:
-            os.system("nvm ls-remote")
-            version=input("Enter the version(v18.12.1) or something like that:")
-            os.system("nvm install v%s" % version)
+            os.system("wget https://nodejs.org/dist/v18.12.1/node-v18.12.1.tar.gz")
+            os.system("tar xvf node-v18.12.1.tar.gz")
+            os.system("sudo cp -r ./{lib,share,include,bin} /usr")
+        
+        print("Do you want to download expressjs")
+        ch=input("Enter Yes/No[Y/n]?:")
+        if(check(ch)):
+            os.system("npm install -g express")
+
         print("\n\nWanna download create-react-app(a tool that allows you to automatically build a basic react-app fro you)?:")
         react=input("Enter Yes/No[Y/n]?:")
         if(check(react)):
