@@ -53,8 +53,8 @@ if("Linux" in platform.platform()):
     afll=input("Enter Yes/No[Y/n]?:")
     if(check(afll)):
         os.system("cd")
-        os.system("cd /usr/java")
-        os.system("wget https://javadl.oracle.com/webapps/download/AutoDL?BundleId=247125_10e8cce67c7843478f41411b7003171c")
+        os.system("sudo cd /usr/java")
+        os.system("sudo wget https://javadl.oracle.com/webapps/download/AutoDL?BundleId=247125_10e8cce67c7843478f41411b7003171c")
         os.system("tar xvf jre-8u351-linux-i586.tar.gz")
         os.system("cd ../..")
         os.system("wget https://www.jflap.org/jflaptmp/july27-18/JFLAP7.1.jar")
